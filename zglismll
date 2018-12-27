@@ -160,6 +160,16 @@ HTTP状态码
 503 Service unavailable
 表明服务器暂时处于超负载或停机维护，如果事先得知解除以上状态需要时间，最好写入RetryAfter 首部字段再返回客户端。
 
+CSMA/CD
+载波监听多点接入/碰撞检测
+发生碰撞(截断二进制指数退避算法)
+
+CSMA/CA5
+
+PING 工作在应用层 
+
+traceroute 工作在网络层
+
 
 
 

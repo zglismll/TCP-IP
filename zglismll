@@ -246,6 +246,9 @@ DIGEST认证 客户端发送认证要求，服务端发送质询码，客户端�
 SSL客户端认证
 
 
+cookie只能存储ASCALL码字符串，session可以存储任何类型数据 ， 因此数据复杂时首选session
+cookie存储在浏览器中，容易被恶意查看，ke'yi
+
 
 
 

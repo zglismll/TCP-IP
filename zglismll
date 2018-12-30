@@ -138,6 +138,7 @@ HTTP状态码
 206 Partiel Content 该状态码表示客户端进行了状态请求，而服务器成功执行了这部分的GET请求，响应报文中包含由content-range指定范围的实体内容。
 
 3XX 重定向状态码 需要完成附加操作完成请求
+300 客户端请求了实际指向多个资源的URI.
 301 Moved Permanently 永久性重定向 状态码表示请求的资源已经被分配了新的URI，以后应使用资源现在所指的URI。也就是说，如果已经把资源的URI保存为书签了，这时应该按Location
 首部提示的字段重新保存。
 302 Found 临时重定向 改状态码表示请求的资源已被分配了新的URI，希望（用户）本次能使用新的URI进行访问。
@@ -154,6 +155,8 @@ HTTP状态码
 用以质询用户信息，浏览器初次接收到401响应，弹出用于验证窗口。
 403 Forbidden 该状态码表示对请求资源的访问被服务器拒绝了。 未获得文件系统访问授权，访问权限出现某些问题，都可能是403原因。
 404 Not found 找不到请求资源 服务器上无法找到或服务器拒绝访问但不想说明原因。
+412 Precondition failed 请求条件不成立
+
 
 5XX 服务器错误状态码  服务器处理请求出错
 500 Internal Server Error
@@ -172,8 +175,81 @@ PING 工作在应用层
 traceroute 工作在网络层
 
 
-### http报文
-报文，首部，空行，
+HTTP 报文
+报文首部 空行 报文实体
+报文首部
+请求报文首部 请求行  请求首部 通用首部 实体首部
+响应报文首部 状态行 响应首部 通用首部 实体首部
+请求行 方法 URI http版本
+状态行 版本 状态码 原因
+
+方法
+GET 获取资源
+POST 上传资源
+PUT 上传资源
+OPTION 询问支持方法
+DELETE 删除资源
+HEDA 获得报文首部 不返回实体
+
+PUT有幂等性 POST 没有幂等性
+
+请求首部
+ACCEPT 告知服务器能够处理媒体类型
+HOST 请求资源所属主机名 端口号
+ACCEPT CHARSET 支持字符集
+ACCEPT ENCODING 用户可接受编码及优先级
+Authorization  认证
+IF- 条件请求 
+IF-MODIFIED SINCE
+IF-NONE MATCH
+IF-Range
+MAX-FORWARDS
+USER AGENT 客户端信息
+
+响应首部
+ACCEPT RANGE     BYTS/NONE
+AGE
+Etag
+
+通用首部
+CACHE-control 控制缓存
+CONNECTTION 管理持久连接 逐跳首部
+DATE         报文创建日期
+TRAILER 报文末端首部一览
+
+
+实体首部
+EXPIRES 资源失效日期
+CONTENT- 信息 编码方式 语言 大小 摘要 位置 范围 类型 实体主体过期日期 最后修改
+
+COOKIE相关属性
+name = value 赋予cookie名称和其值（必须项
+expires 有效期 若不指明则默认为浏览器关闭
+path = PATH 
+domain 域名
+secure 仅在https安全通信发送cookie
+httponly 使cookie不能被javascript 访问
+
+
+HTTPS 
+HTTP+加密 + 认证 + 完整性保护
+
+加密
+混合加密
+保护公钥安全性，使用数字签名+公钥证书
+MAC报文摘要保护完整性
+
+
+认证
+BASIC认证 用户id:密码 BASE64编码后明码发送
+DIGEST认证 客户端发送认证要求，服务端发送质询码，客户端将认证信息与质询码计算得到响应码，发送给服务端
+SSL客户端认证
+
+
+
+
+
+
 
 
 
